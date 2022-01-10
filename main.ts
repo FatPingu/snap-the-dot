@@ -1,10 +1,7 @@
-let sprite = game.createSprite(2, 2)
-basic.forever(function () {
-    sprite.ifOnEdgeBounce()
-    sprite.move(1)
-    basic.pause(150)
-})
-basic.forever(function () {
+function SnapStart () {
+    sprite = game.createSprite(2, 2)
+}
+function SnapFrvr2 () {
     if (pins.analogReadPin(AnalogPin.P2) < 938) {
         if (sprite.get(LedSpriteProperty.X) == 2) {
             game.addScore(1)
@@ -13,4 +10,17 @@ basic.forever(function () {
         }
         basic.pause(500)
     }
+}
+function SnapFrvr1 () {
+    sprite.ifOnEdgeBounce()
+    sprite.move(1)
+    basic.pause(150)
+}
+let sprite: game.LedSprite = null
+SnapStart()
+basic.forever(function () {
+    SnapFrvr1()
+})
+basic.forever(function () {
+    SnapFrvr2()
 })
